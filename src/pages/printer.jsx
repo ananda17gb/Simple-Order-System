@@ -6,13 +6,11 @@ const Printer = ({ orderDetails, total }) => {
       <h1 className="text-xl font-semibold text-gray-700">Receipt</h1>
       {orderDetails.map((detail, index) => (
         <p key={index}>
-          Product Name: {detail.name} ({detail.quantity} kg), Quantity:{" "}
-          {detail.quantity}, Subtotal: Rp. {detail.subtotal.toFixed(2)}
+          Product Name: {detail.name}, Quantity: {detail.quantity}, Subtotal:
+          Rp. {detail.subtotal}
         </p>
       ))}
-      <h2 className="text-xl font-bold text-center mt-2">
-        Total: Rp. {total.toFixed(2)}
-      </h2>
+      <h2 className="text-xl font-bold text-center mt-2">Total: Rp. {total}</h2>
     </div>
   );
 };

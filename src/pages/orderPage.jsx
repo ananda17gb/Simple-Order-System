@@ -7,8 +7,14 @@ function OrderPage() {
   const [orderDetails, setOrderDetails] = useState([]);
   const [total, setTotal] = useState(0);
   const [showReceipt, setShowReceipt] = useState(false);
+  const [doneOrdering, setDoneOrdering] = useState(false);
 
   const addOrderDetails = (productId, quantity) => {
+    if (doneOrdering) {
+      alert("Order is complete. You cannot add more items.");
+      return;
+    }
+
     const product = products.find((p) => p.id === productId);
     if (product) {
       setOrderDetails((prevDetails) => {
@@ -60,12 +66,14 @@ function OrderPage() {
 
   const handlePrintReceipt = () => {
     setShowReceipt(true);
+    setDoneOrdering(true);
   };
 
   const clearReceipt = () => {
     setOrderDetails([]);
     setTotal(0);
     setShowReceipt(false);
+    setDoneOrdering(false);
   };
 
   return (
