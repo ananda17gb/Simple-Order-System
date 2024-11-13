@@ -16,14 +16,30 @@ function OrderPage() {
           (detail) => detail.productId === productId
         );
 
+        const productPrice = getProductPrice(productId);
+        const productSubtotal = productPrice * quantity;
+
         if (existingProduct) {
           return prevDetails.map((detail) =>
             detail.productId === productId
-              ? { ...detail, quantity: detail.quantity + quantity }
+              ? {
+                  ...detail,
+                  quantity: detail.quantity + quantity,
+                  subtotal: (detail.quantity + quantity) * productPrice,
+                }
               : detail
           );
         } else {
-          return [...prevDetails, { productId, name: product.name, quantity }];
+          return [
+            ...prevDetails,
+            {
+              productId,
+              name: product.name,
+              quantity,
+              price: productPrice,
+              subtotal: productSubtotal,
+            },
+          ];
         }
       });
     }
@@ -47,9 +63,9 @@ function OrderPage() {
   };
 
   const clearReceipt = () => {
-    setOrderDetails([]); // Clear the order details
-    setTotal(0); // Reset the total
-    setShowReceipt(false); // Hide the receipt
+    setOrderDetails([]);
+    setTotal(0);
+    setShowReceipt(false);
   };
 
   return (
@@ -57,7 +73,7 @@ function OrderPage() {
       <h1 className="text-3xl font-semibold text-gray-800 mb-6">
         Cashier System
       </h1>
-      <div className="flex justify-around lg:flex-row gap-8 w-full">
+      <div className="flex justify-between lg:flex-row gap-8 w-full">
         <div className="flex flex-col w-full lg:w-[800px] bg-white p-4 rounded-lg shadow-md">
           <h2 className="text-xl font-semibold text-gray-700">
             Select Products:

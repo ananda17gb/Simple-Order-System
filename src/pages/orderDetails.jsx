@@ -14,12 +14,12 @@ function OrderDetail({ productId, name, quantity, onSubtotalChange }) {
   }, [productId, quantity, onSubtotalChange]);
 
   return (
-    <div className="flex gap-2 flex-wrap">
+    <div className="flex gap-1">
       <p>Product ID: {productId} |</p>
       <p>Product Name: {name} |</p>
       <p>Quantity: {quantity} |</p>
-      <p>Price: ${price} |</p>
-      <p>Subtotal: ${subtotal} |</p>
+      <p>Price: Rp. {price} |</p>
+      <p>Subtotal: Rp. {subtotal} |</p>
     </div>
   );
 }
