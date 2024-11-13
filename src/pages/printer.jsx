@@ -6,7 +6,7 @@ const Printer = ({ orderDetails, total }) => {
       <h1 className="text-xl font-semibold text-gray-700">Receipt</h1>
       {orderDetails.map((detail, index) => (
         <p key={index}>
-          Product ID: {detail.productId}, Product Name: {detail.name}, Quantity:
+          Product Name: {detail.name} ({detail.quantity} kg), Quantity:{" "}
           {detail.quantity}
         </p>
       ))}

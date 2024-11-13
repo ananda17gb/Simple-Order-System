@@ -11,10 +11,21 @@ function OrderPage() {
   const addOrderDetails = (productId, quantity) => {
     const product = products.find((p) => p.id === productId);
     if (product) {
-      setOrderDetails((prevDetails) => [
-        ...prevDetails,
-        { productId, name: product.name, quantity },
-      ]);
+      setOrderDetails((prevDetails) => {
+        const existingProduct = prevDetails.find(
+          (detail) => detail.productId === productId
+        );
+
+        if (existingProduct) {
+          return prevDetails.map((detail) =>
+            detail.productId === productId
+              ? { ...detail, quantity: detail.quantity + quantity }
+              : detail
+          );
+        } else {
+          return [...prevDetails, { productId, name: product.name, quantity }];
+        }
+      });
     }
   };
 
