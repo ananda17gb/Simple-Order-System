@@ -42,7 +42,7 @@ function OrderPage() {
   };
 
   return (
-    <div className="flex flex-col items-center my-10 lg:mx-20 h-screen bg-gray-100 p-6 rounded-lg shadow-lg">
+    <div className="flex flex-col items-center my-10 lg:mx-20 h-full bg-gray-100 p-6 rounded-lg shadow-lg">
       <h1 className="text-3xl font-semibold text-gray-800 mb-6">
         Cashier System
       </h1>
